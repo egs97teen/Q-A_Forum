@@ -1,0 +1,34 @@
+<header>
+<ul>
+	<li><a [routerLink]="['/dashboard']">Home</a></li>
+	<li>|</li>
+	<li><a [routerLink]="['/question', question._id]">Go Back to Question</a></li>
+</ul>
+<a href="" (click)="logout()">Log Out</a>
+</header>
+
+<h1>{{question.content}}</h1>
+<h2>{{question.description}}</h2>
+
+<div id="answer_form">
+	<form (submit)="addAnswer()" #answerAdd='ngForm'>
+		<label for="content">Your Answer:<textarea
+			type="text"
+			name="content"
+			minlength="5"
+			required
+			[(ngModel)]="answer.content"
+			#content='ngModel'></textarea>
+			<p *ngIf="content.errors?.minlength && (content.dirty || content.touched)">Answer must be at least 5 characters long</p>
+			<p *ngIf="content.errors?.required && (content.dirty ||content.touched)">Answer is required</p>
+		</label>
+		<label for="details">Supporting details for your answer (optional): <textarea
+			type="text"
+			name="details"
+			[(ngModel)]="details.description"
+			#details='ngModel'></textarea>
+		</label>
+		<input type="submit" [disabled]="!answerAdd.form.valid" value="Submit">
+	</form>
+	<button (click)="cancel()">Cancel</button>
+</div>

@@ -1,0 +1,23 @@
+<header>
+<ul>
+	<li><a [routerLink]="['/dashboard']">Home</a></li>
+	<li>|</li>
+	<li><a [routerLink]="['/answer', question._id]">Answer this Question</a></li>
+</ul>
+<a href="" (click)="logout()">Log Out</a>
+</header>
+
+<h1>{{question.content}}</h1>
+<h2>{{question.description}}</h2>
+
+<div id="answers">
+	<div class="answer" *ngFor="let answer of question.answers">
+		<p>{{answer._user.first_name}}</p>
+		<p>{{answer.content}}</p>
+		<p>{{answer.details}}</p>
+		<p>{{answer.like_count}}</p>
+		<button (click)="like(answer._id)">Like!</button>
+	</div>
+</div>
+
+
